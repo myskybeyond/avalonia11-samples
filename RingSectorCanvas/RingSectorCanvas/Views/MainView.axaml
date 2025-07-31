@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:RingSectorCanvas.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RingSectorCanvas.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+    <Canvas Background="White" Width="800" Height="450">
+        <!-- RingSectorCanvas  
+		Width=吸热塔width+固定值 height=吸热塔height+固定值  
+		Canvas.Left="吸热塔.Canvas.Left - (RingSectorCanvas.Width-Image.Width)/2"   
+		Canvas.Top="吸热塔.Canvas.Top - (RingSectorCanvas.Height-Image.Height)/2"  -->
+        <vm:RingSectorCanvas x:Name="SectorCanvas" Width="340"
+                             Height="340" HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             SectorFills="{Binding SectorFills}"
+                             SectorCount="8"  Clockwise="False"
+                             Canvas.Left="18" Canvas.Top="30" ZIndex="3"/>
+        <!-- Image吸热塔  Width Height Canvas.Left Canvas.Top属性已知-->
+        <Image Width="200" Height="200" 
+               Canvas.Left="88" Canvas.Top="100" ZIndex="2"/>
+    </Canvas>
+</UserControl>
